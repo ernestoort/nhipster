@@ -7,7 +7,7 @@ services:
     environment:
       - MYSQL_ALLOW_EMPTY_PASSWORD=true
       - MYSQL_USER=sa
-      - MYSQL_PASSWORD=yourStrong(!)Password
+      - MYSQL_PASSWORD=legendary8
       - MYSQL_DATABASE=nhipster
     ports:
       - 3307:3306

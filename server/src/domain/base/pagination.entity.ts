@@ -5,15 +5,26 @@ import { Type, Expose as JsonProperty } from 'class-transformer';
 export class Sort {
     public property: string;
     public direction: 'ASC' | 'DESC' | string;
-    constructor(sort: string) {
+    constructor(sort: string| string[]) {
+
         if (sort) {
-            [this.property, this.direction] = sort.split(',');
+
+          if (Array.isArray(sort)) {
+
+            [this.property, this.direction] = sort[0].split(',');
+          }else{
+
+            // [this.property, this.direction] = sort.split(',');
+            const splitValues = sort.split(',');
+            this.property=splitValues[0];
+            this.direction=splitValues[1].toUpperCase();
+          }
         }
     }
 
     asOrder(): any {
         const order = {};
-        order[this.property] = this.direction;
+        order[this.property] = this.direction.toUpperCase();
         return order;
     }
 }
